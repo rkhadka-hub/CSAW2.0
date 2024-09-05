@@ -13,12 +13,8 @@ public class ZeebeClientController {
     @GetMapping("/start-workflow")
     public String startWorkflow() {
         // Example of starting a workflow
-        zeebeClient.newCreateInstanceCommand()
-                .bpmnProcessId("Process_0s0pmjw")
-                .latestVersion()
-                .send()
-                .join();
-
+        zeebeClient.newActivateJobsCommand().jobType("Process_0s0pmjw");
+        System.out.println("WorkFlow Started");
         return "Workflow started";
     }
 }
